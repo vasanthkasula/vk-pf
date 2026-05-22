@@ -56,8 +56,8 @@ nav{position:sticky;top:0;background:rgba(8,11,16,0.92);backdrop-filter:blur(24p
 .nb.on{background:var(--a);color:#000;font-weight:700;border-color:var(--a)}
 
 /* SECTIONS */
-.sec{display:none;animation:fin 0.28s ease}
-.sec.on{display:block}
+.tab-pane{display:none;animation:fin 0.28s ease}
+.tab-pane.on{display:block}
 @keyframes fin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .sec-hd{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--a);margin-bottom:22px;display:flex;align-items:center;gap:12px}
 .sec-hd::after{content:'';flex:1;height:1px;background:var(--line)}
@@ -225,7 +225,7 @@ nav{position:sticky;top:0;background:rgba(8,11,16,0.92);backdrop-filter:blur(24p
 </nav>
 
 <!-- ABOUT -->
-<div class="sec on" id="sec-about">
+<div class="tab-pane on" id="sec-about">
   <div class="sec-hd">Overview</div>
   <div class="kpi-grid">
     <div class="kpi"><div class="kpi-n">91%</div><div class="kpi-l">Model accuracy</div></div>
@@ -253,7 +253,7 @@ nav{position:sticky;top:0;background:rgba(8,11,16,0.92);backdrop-filter:blur(24p
 </div>
 
 <!-- FEATURED PROJECTS -->
-<div class="sec" id="sec-projects">
+<div class="tab-pane" id="sec-projects">
   <div class="sec-hd">Featured Projects</div>
   <div class="pj-grid">
 
@@ -315,7 +315,7 @@ nav{position:sticky;top:0;background:rgba(8,11,16,0.92);backdrop-filter:blur(24p
 </div>
 
 <!-- ALL GITHUB REPOS (live) -->
-<div class="sec" id="sec-repos">
+<div class="tab-pane" id="sec-repos">
   <div class="gh-top">
     <div class="sec-hd" style="margin-bottom:0;flex:1">All GitHub Repositories</div>
     <a class="lbtn" href="https://github.com/vasanthkasula" target="_blank">&#x1F419; View profile</a>
@@ -334,7 +334,7 @@ nav{position:sticky;top:0;background:rgba(8,11,16,0.92);backdrop-filter:blur(24p
 </div>
 
 <!-- SKILLS -->
-<div class="sec" id="sec-skills">
+<div class="tab-pane" id="sec-skills">
   <div class="sec-hd">Technical Skills</div>
   <div class="sk-grid">
     <div class="sk-card"><div class="sk-title">Data Science</div><div class="sk-tags"><span class="sk-tag">Statistical Analysis</span><span class="sk-tag">Hypothesis Testing</span><span class="sk-tag">Feature Engineering</span><span class="sk-tag">EDA</span><span class="sk-tag">A/B Testing</span></div></div>
@@ -349,7 +349,7 @@ nav{position:sticky;top:0;background:rgba(8,11,16,0.92);backdrop-filter:blur(24p
 </div>
 
 <!-- EXPERIENCE -->
-<div class="sec" id="sec-exp">
+<div class="tab-pane" id="sec-exp">
   <div class="sec-hd">Experience &amp; Education</div>
   <div class="tl">
     <div class="tl-row">
@@ -407,7 +407,7 @@ nav{position:sticky;top:0;background:rgba(8,11,16,0.92);backdrop-filter:blur(24p
 </div>
 
 <!-- CERTIFICATIONS -->
-<div class="sec" id="sec-certs">
+<div class="tab-pane" id="sec-certs">
   <div class="sec-hd">Certifications</div>
   <div class="cert-list">
     <div class="cert"><div class="cert-ico">&#x1F3C5;</div><div><div class="cert-name">IBM Data Science Professional Certificate (2025)</div><div class="cert-sub">Data Analysis for ML &middot; Supervised &amp; Unsupervised Learning &middot; Deep Learning &middot; Reinforcement Learning &middot; Python for Data Science</div></div></div>
@@ -417,7 +417,7 @@ nav{position:sticky;top:0;background:rgba(8,11,16,0.92);backdrop-filter:blur(24p
 </div>
 
 <!-- ACHIEVEMENTS -->
-<div class="sec" id="sec-ach">
+<div class="tab-pane" id="sec-ach">
   <div class="sec-hd">Achievements &amp; Metrics</div>
   <div class="ach-list">
     <div class="ach"><div class="ach-n">#1</div><div class="ach-body"><strong>Rank 1 — BIET AI Hackathon</strong><br>Led winning team at hackathon conducted by Bharat Institute of Engineering and Technology.</div></div>
@@ -431,7 +431,7 @@ nav{position:sticky;top:0;background:rgba(8,11,16,0.92);backdrop-filter:blur(24p
 </div>
 
 <!-- CONTACT -->
-<div class="sec" id="sec-contact">
+<div class="tab-pane" id="sec-contact">
   <div class="sec-hd">Get in Touch</div>
   <div class="ct-grid">
     <a class="ct-card" href="mailto:kasulavasanth55@gmail.com"><div class="ct-ico">&#x2709;&#xFE0F;</div><div><div class="ct-lbl">Email</div><div class="ct-val">kasulavasanth55@gmail.com</div></div></a>
@@ -458,7 +458,7 @@ const GH = 'vasanthkasula';
 // ═══ NAV ═══
 const TABS = ['about','projects','repos','skills','exp','certs','ach','contact'];
 function nav(id, btn) {
-  document.querySelectorAll('.sec').forEach(s => s.classList.remove('on'));
+  document.querySelectorAll('.tab-pane').forEach(s => s.classList.remove('on'));
   document.querySelectorAll('.nb').forEach(b => b.classList.remove('on'));
   document.getElementById('sec-' + id).classList.add('on');
   if (btn) btn.classList.add('on');
