@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Kasula Vasanth — IBM-certified Data Scientist and AI/ML Engineer, Hyderabad">
+<meta property="og:title" content="Kasula Vasanth — Data Scientist">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/214066121?v=4">
+<title>Kasula Vasanth — Data Scientist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ── TOKENS ── */
+:root {
+  --bg:   #080b10;
+  --bg1:  #0d1119;
+  --bg2:  #131b29;
+  --bg3:  #1a2438;
+  --line: rgba(255,255,255,0.07);
+  --ln2:  rgba(255,255,255,0.13);
+  --a:    #05d490;
+  --a2:   #00ffb3;
+  --t1:   #eef2ff;
+  --t2:   #7c8da8;
+  --t3:   #3d5070;
+  --rad:  12px;
+  --rad2: 8px;
+}
+
+/* ── BASE ── */
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--t1);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* dot grid */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background: radial-gradient(circle, rgba(5,212,144,0.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* glow orbs */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(130px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.13;
+}
+.orb-a { width:600px; height:600px; background:#05d490; top:-200px; right:-150px; }
+.orb-b { width:400px; height:400px; background:#4f90f0; bottom:-100px; left:-100px; }
+
+/* ── LAYOUT ── */
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 24px 100px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ══════════════════════════════════════
+   HEADER
+══════════════════════════════════════ */
+.hdr {
+  padding: 56px 0 44px;
+  border-bottom: 1px solid var(--line);
+}
+
+.hdr-row {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+
+
+@keyframes blink {
+  0%,100% { box-shadow: 0 0 0 0 rgba(5,212,144,0.5); }
+  50%      { box-shadow: 0 0 0 6px rgba(5,212,144,0); }
+}
+
+.hdr-info { flex: 1; min-width: 220px; }
+
+.hdr-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--a);
+  background: rgba(5,212,144,0.08);
+  border: 1px solid rgba(5,212,144,0.22);
+  padding: 5px 13px;
+  border-radius: 100px;
+  margin-bottom: 18px;
+}
+
+.hdr-badge-dot {
+  width: 7px; height: 7px;
+  background: var(--a);
+  border-radius: 50%;
+  animation: blink 2s ease infinite;
+  display: inline-block;
+}
+
+h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(46px, 8vw, 88px);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+h1 .hl { color: var(--a); display: block; }
+
+.hdr-bio {
+  font-size: 14px;
+  color: var(--t2);
+  line-height: 1.8;
+  max-width: 520px;
+  margin-bottom: 26px;
+}
+
+.hdr-bio strong { color: var(--t1); font-weight: 600; }
+
+.link-row { display: flex; flex-wrap: wrap; gap: 7px; }
+
+.lbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 7px 15px;
+  border-radius: 100px;
+  border: 1px solid var(--ln2);
+  color: var(--t2);
+  text-decoration: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.lbtn:hover { background: var(--bg2); color: var(--t1); border-color: rgba(255,255,255,0.2); }
+
+
+/* stats bar */
+.stat-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 32px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--t3);
+}
+
+.stat-item { display: flex; align-items: center; gap: 6px; }
+.stat-item b { color: var(--a); font-weight: 700; }
+
+/* ══════════════════════════════════════
+   NAVIGATION — sticky
+══════════════════════════════════════ */
+.nav-bar {
+  position: sticky;
+  top: 0;
+  background: rgba(8,11,16,0.93);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  margin: 0 -24px;
+  padding: 0 24px;
+  z-index: 999;
+  margin-bottom: 40px;
+}
+
+.nav-inner {
+  display: flex;
+  gap: 3px;
+  padding: 10px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav-inner::-webkit-scrollbar { display: none; }
+
+/* ── NAV BUTTON ── */
+.nav-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 7px 15px;
+  border-radius: 100px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--t3);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.14s;
+  /* IMPORTANT: no outline that could cause issues */
+  outline: none;
+}
+
+.nav-btn:hover { color: var(--t2); border-color: var(--ln2); }
+
+.nav-btn.active {
+  background: var(--a);
+  color: #000;
+  font-weight: 700;
+  border-color: var(--a);
+}
+
+/* ══════════════════════════════════════
+   CONTENT PANELS
+   Uses data-panel attribute — no class conflicts
+══════════════════════════════════════ */
+[data-panel] {
+  display: none;
+}
+
+[data-panel].show {
+  display: block;
+  animation: fadein 0.25s ease;
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* panel heading */
+.ph {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--a);
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ph::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+/* ══════════════════════════════════════
+   ABOUT — KPI cards
+══════════════════════════════════════ */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.kpi-card {
+  background: var(--bg1);
+  border: 1px solid var(--line);
+  border-radius: var(--rad);
+  padding: 16px 18px;
+  transition: all 0.15s;
+}
+
+.kpi-card:hover { border-color: rgba(5,212,144,0.3); transform: translateY(-2px); }
+
+.kpi-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--a);
+  line-height: 1;
+}
+
+.kpi-lbl { font-size: 11px; color: var(--t2); margin-top: 5px; }
+
+.bio-box {
+  background: var(--bg1);
+  border: 1px solid var(--line);
+  border-radius: var(--rad);
+  padding: 20px 24px;
+  font-size: 13.5px;
+  color: var(--t2);
+  line-height: 1.85;
+  margin-bottom: 18px;
+}
+
+.bio-box strong { color: var(--t1); font-weight: 600; }
+
+.pill-row { display: flex; flex-wrap: wrap; gap: 7px; }
+
+.pill {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 5px 13px;
+  border-radius: 100px;
+  border: 1px solid var(--ln2);
+  color: var(--t2);
+}
+
+.pill-g { background: rgba(5,212,144,0.08); color: var(--a); border-color: rgba(5,212,144,0.24); }
+.pill-b { background: rgba(79,144,240,0.08); color: #7fb1f5; border-color: rgba(79,144,240,0.24); }
+.pill-p { background: rgba(157,125,245,0.08); color: #bba6f8; border-color: rgba(157,125,245,0.24); }
+
+/* ══════════════════════════════════════
+   PROJECT CARDS
+══════════════════════════════════════ */
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.proj-card {
+  background: var(--bg1);
+  border: 1px solid var(--line);
+  border-radius: var(--rad);
+  padding: 20px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.proj-card:hover {
+  border-color: rgba(255,255,255,0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+}
+
+.proj-top-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--card-color, var(--a));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s;
+}
+
+.proj-card:hover .proj-top-bar { transform: scaleX(1); }
+
+.proj-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.proj-icon {
+  width: 42px; height: 42px;
+  border-radius: var(--rad2);
+  background: var(--bg2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.tag-cluster { display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; }
+
+.ptag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 100px;
+}
+
+.ptag-live   { background: rgba(5,212,144,0.12); color: var(--a); border: 1px solid rgba(5,212,144,0.28); }
+.ptag-ml     { background: rgba(79,144,240,0.12); color: #7fb1f5; border: 1px solid rgba(79,144,240,0.28); }
+.ptag-gen    { background: rgba(157,125,245,0.12); color: #bba6f8; border: 1px solid rgba(157,125,245,0.28); }
+.ptag-rag    { background: rgba(240,120,58,0.12); color: #f5a07a; border: 1px solid rgba(240,120,58,0.28); }
+.ptag-web    { background: rgba(240,96,96,0.12); color: #f5a0a0; border: 1px solid rgba(240,96,96,0.28); }
+
+.proj-title { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--t1); margin-bottom: 7px; }
+.proj-desc  { font-size: 12px; color: var(--t2); line-height: 1.65; margin-bottom: 12px; flex: 1; }
+
+.proj-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+
+.chip {
+  font-family: 'DM Mono', monospace;
+  font-size: 9.5px;
+  color: var(--a);
+  background: rgba(5,212,144,0.07);
+  border: 1px solid rgba(5,212,144,0.17);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.proj-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 11px;
+  border-top: 1px solid var(--line);
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.stack-row { display: flex; gap: 4px; flex-wrap: wrap; }
+
+.stag {
+  font-size: 10px;
+  color: var(--t3);
+  background: var(--bg2);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.proj-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* ══════════════════════════════════════
+   GITHUB REPOS
+══════════════════════════════════════ */
+.repos-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filter-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+
+.filt-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 5px 13px;
+  border-radius: 100px;
+  border: 1px solid var(--ln2);
+  background: transparent;
+  color: var(--t3);
+  cursor: pointer;
+  transition: all 0.14s;
+}
+
+.filt-btn:hover { color: var(--t2); border-color: rgba(255,255,255,0.18); }
+.filt-btn.active { background: var(--bg2); color: var(--a); border-color: rgba(5,212,144,0.35); }
+
+.repos-inner { display: flex; flex-direction: column; gap: 9px; }
+
+.repo-row {
+  background: var(--bg1);
+  border: 1px solid var(--line);
+  border-radius: var(--rad);
+  padding: 13px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+
+.repo-row:hover { border-color: rgba(5,212,144,0.28); background: var(--bg2); }
+
+.repo-icon {
+  width: 36px; height: 36px;
+  border-radius: var(--rad2);
+  background: var(--bg2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.repo-info { flex: 1; min-width: 0; }
+
+.repo-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--a);
+  margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.repo-desc {
+  font-size: 11px;
+  color: var(--t2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.repo-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--t3);
+  flex-shrink: 0;
+}
+
+.lang-badge { display: flex; align-items: center; gap: 4px; }
+.lang-dot   { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+.repos-loader {
+  text-align: center;
+  padding: 56px 0;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--t3);
+}
+
+.spinner {
+  width: 28px; height: 28px;
+  border: 2px solid var(--ln2);
+  border-top-color: var(--a);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  margin: 0 auto 14px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ══════════════════════════════════════
+   SKILLS
+══════════════════════════════════════ */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 12px;
+}
+
+.skill-card {
+  background: var(--bg1);
+  border: 1px solid var(--line);
+  border-radius: var(--rad);
+  padding: 15px 17px;
+}
+
+.skill-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--a);
+  margin-bottom: 11px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.skill-title::before {
+  content: '';
+  width: 3px; height: 11px;
+  background: var(--a);
+  border-radius: 2px;
+}
+
+.skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+
+.skill-tag {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--ln2);
+  color: var(--t2);
+  background: var(--bg2);
+  transition: all 0.12s;
+}
+
+.skill-tag:hover { border-color: rgba(5,212,144,0.32); color: var(--t1); }
+
+/* ══════════════════════════════════════
+   EXPERIENCE TIMELINE
+══════════════════════════════════════ */
+.timeline { display: flex; flex-direction: column; }
+
+.tl-item {
+  display: flex;
+  gap: 18px;
+  padding-bottom: 34px;
+  position: relative;
+}
+
+.tl-item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 16px; top: 36px; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, rgba(5,212,144,0.25), transparent);
+}
+
+.tl-dot {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--bg2);
+  border: 1px solid var(--ln2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 16px;
+  z-index: 1;
+}
+
+.tl-body { flex: 1; padding-top: 4px; }
+
+.tl-role { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--t1); margin-bottom: 2px; }
+.tl-co   { font-size: 12px; color: var(--a); font-weight: 600; margin-bottom: 4px; }
+.tl-when { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--t3); margin-bottom: 10px; }
+.tl-pts  { font-size: 12.5px; color: var(--t2); line-height: 1.8; }
+
+.tl-pt { display: flex; gap: 8px; margin-bottom: 3px; }
+.tl-pt::before { content: '→'; color: var(--a); flex-shrink: 0; }
+
+/* ══════════════════════════════════════
+   CERTS
+══════════════════════════════════════ */
+.cert-list { display: flex; flex-direction: column; gap: 11px; }
+
+.cert-card {
+  background: var(--bg1);
+  border: 1px solid var(--line);
+  border-radius: var(--rad);
+  padding: 15px 19px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  transition: border-color 0.15s;
+}
+
+.cert-card:hover { border-color: rgba(5,212,144,0.28); }
+
+.cert-ico {
+  width: 40px; height: 40px;
+  border-radius: var(--rad2);
+  background: var(--bg2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.cert-name { font-size: 14px; font-weight: 700; color: var(--t1); margin-bottom: 4px; }
+.cert-sub  { font-size: 11.5px; color: var(--t2); line-height: 1.6; }
+
+/* ══════════════════════════════════════
+   ACHIEVEMENTS
+══════════════════════════════════════ */
+.ach-list { display: flex; flex-direction: column; gap: 9px; }
+
+.ach-card {
+  background: var(--bg1);
+  border: 1px solid var(--line);
+  border-radius: var(--rad);
+  padding: 15px 19px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: all 0.15s;
+}
+
+.ach-card:hover { border-color: rgba(5,212,144,0.28); transform: translateX(3px); }
+
+.ach-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--a);
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 68px;
+}
+
+.ach-text { font-size: 13px; color: var(--t2); line-height: 1.65; padding-top: 2px; }
+.ach-text strong { color: var(--t1); font-weight: 700; }
+
+/* ══════════════════════════════════════
+   CONTACT
+══════════════════════════════════════ */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.contact-card {
+  background: var(--bg1);
+  border: 1px solid var(--line);
+  border-radius: var(--rad);
+  padding: 14px 17px;
+  text-decoration: none;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  transition: all 0.15s;
+}
+
+.contact-card:hover { border-color: rgba(5,212,144,0.35); background: var(--bg2); }
+
+.contact-ico {
+  width: 36px; height: 36px;
+  border-radius: var(--rad2);
+  background: var(--bg2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  flex-shrink: 0;
+}
+
+.contact-lbl { font-family: 'DM Mono', monospace; font-size: 9.5px; color: var(--t3); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.06em; }
+.contact-val { font-size: 12px; font-weight: 700; color: var(--t1); }
+
+.open-box {
+  background: linear-gradient(135deg, rgba(5,212,144,0.08), rgba(5,212,144,0.02));
+  border: 1px solid rgba(5,212,144,0.2);
+  border-radius: var(--rad);
+  padding: 20px 24px;
+  font-size: 13.5px;
+  color: var(--t2);
+  line-height: 1.8;
+}
+
+.open-box strong { color: var(--t1); font-weight: 700; }
+
+/* ══════════════════════════════════════
+   SCROLLBAR
+══════════════════════════════════════ */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 3px; }
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 640px) {
+  h1 { font-size: 52px; }
+  .proj-grid { grid-template-columns: 1fr; }
+  .skill-grid { grid-template-columns: 1fr; }
+  .kpi-row { grid-template-columns: repeat(3, 1fr); }
+  .contact-grid { grid-template-columns: 1fr 1fr; }
+  .repo-meta { display: none; }
+}
+
+@media (max-width: 380px) {
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="orb orb-a"></div>
+<div class="orb orb-b"></div>
+
+<div class="page">
+
+  <!-- ═══════════════════ HEADER ═══════════════════ -->
+  <header class="hdr">
+    <div class="hdr-row">
+      <div class="hdr-info">
+        <div class="hdr-badge">
+          <span class="hdr-badge-dot"></span>
+          Available for hire &middot; Hyderabad, India
+        </div>
+        <h1>KASULA <span class="hl">VASANTH</span></h1>
+        <p class="hdr-bio">
+          <strong>IBM-certified Data Scientist</strong> building production ML systems,
+          GenAI pipelines, and RAG-powered applications.
+          91% model accuracy &middot; 500+ concurrent users &middot; 40% RAG accuracy gain.
+        </p>
+        <div class="link-row">
+          <a class="lbtn" href="https://github.com/vasanthkasula" target="_blank">&#128025; GitHub</a>
+          <a class="lbtn" href="https://linkedin.com/in/vasanth-kasula-314428285" target="_blank">&#128188; LinkedIn</a>
+          <a class="lbtn" href="https://kaggle.com/vasanthkasula" target="_blank">&#128202; Kaggle</a>
+          <a class="lbtn" href="https://leetcode.com/u/vasanth_kasula" target="_blank">&#128187; LeetCode</a>
+          <a class="lbtn" href="mailto:kasulavasanth55@gmail.com">&#9993; Email</a>
+        </div>
+    </div>
+    <div class="stat-bar" id="stat-bar">
+      <div class="stat-item">Loading GitHub stats&hellip;</div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════ NAV ═══════════════════ -->
+  <nav class="nav-bar">
+    <div class="nav-inner" id="nav-inner">
+      <button class="nav-btn active" data-target="about">About</button>
+      <button class="nav-btn" data-target="projects">Featured Projects</button>
+      <button class="nav-btn" data-target="repos">All GitHub Repos</button>
+      <button class="nav-btn" data-target="skills">Skills</button>
+      <button class="nav-btn" data-target="exp">Experience</button>
+      <button class="nav-btn" data-target="certs">Certifications</button>
+      <button class="nav-btn" data-target="ach">Achievements</button>
+      <button class="nav-btn" data-target="contact">Contact</button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ ABOUT ═══════════════════ -->
+  <div data-panel="about" class="show">
+    <div class="ph">Overview</div>
+    <div class="kpi-row">
+      <div class="kpi-card"><div class="kpi-num">91%</div><div class="kpi-lbl">Model accuracy</div></div>
+      <div class="kpi-card"><div class="kpi-num">500+</div><div class="kpi-lbl">Concurrent users</div></div>
+      <div class="kpi-card"><div class="kpi-num">+40%</div><div class="kpi-lbl">RAG accuracy</div></div>
+      <div class="kpi-card"><div class="kpi-num" id="kpi-repos">10</div><div class="kpi-lbl">GitHub repos</div></div>
+      <div class="kpi-card"><div class="kpi-num">3</div><div class="kpi-lbl">Certifications</div></div>
+      <div class="kpi-card"><div class="kpi-num">3+</div><div class="kpi-lbl">Yrs experience</div></div>
+    </div>
+    <div class="bio-box">
+      B.Tech Computer Science &amp; Engineering &mdash; <strong>Bharat Institute of Engineering and Technology</strong>
+      (JNTU Hyderabad, 2020&ndash;2024). Hands-on across the full data science lifecycle &mdash; EDA, feature
+      engineering, model training, evaluation, and MLOps deployment. Currently interning at
+      <strong>Elavence Skills</strong> (Feb 2026&ndash;Present) on real-world ML classification,
+      regression, and NLP tasks.<br><br>
+      Passionate about GenAI, LLM applications, RAG architectures, and multi-agent AI systems.
+      Won <strong>Rank 1</strong> at the BIET Hackathon.<br><br>
+      <strong>Core stack:</strong> Python &middot; LangChain &middot; CrewAI &middot; RAG &middot;
+      OpenAI/Gemini APIs &middot; TensorFlow &middot; PyTorch &middot; Scikit-learn &middot;
+      SQL &middot; Power BI &middot; Streamlit &middot; Docker &middot; AWS
+    </div>
+    <div class="pill-row">
+      <span class="pill pill-g">&#129504; AI Research</span>
+      <span class="pill pill-b">&#128025; Open Source</span>
+      <span class="pill pill-p">&#127918; Game Dev</span>
+      <span class="pill pill-g">&#127942; Hackathon Rank 1</span>
+      <span class="pill pill-b">&#128205; Hyderabad, India</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ FEATURED PROJECTS ═══════════════════ -->
+  <div data-panel="projects">
+    <div class="ph">Featured Projects</div>
+    <div class="proj-grid">
+
+      <!-- 1. AI Chatbot -->
+      <a class="proj-card" href="https://chat-bot-vaskas.streamlit.app/" target="_blank" style="--card-color:#1abc9c">
+        <div class="proj-top-bar"></div>
+        <div class="proj-head">
+          <div class="proj-icon">&#129302;</div>
+          <div class="tag-cluster"><span class="ptag ptag-live">Live</span><span class="ptag ptag-gen">GenAI</span></div>
+        </div>
+        <div class="proj-title">AI Chatbot</div>
+        <div class="proj-desc">Conversational AI chatbot powered by LLM APIs with a clean Streamlit interface. Supports multi-turn conversation, context memory, and natural language understanding.</div>
+        <div class="proj-chips">
+          <span class="chip">Multi-turn chat</span><span class="chip">LLM powered</span><span class="chip">Live demo</span>
+        </div>
+        <div class="proj-foot">
+          <div class="stack-row"><span class="stag">Python</span><span class="stag">LLM API</span><span class="stag">Streamlit</span></div>
+          <span class="proj-date" style="color:#1abc9c">2025</span>
+        </div>
+      </a>
+
+      <!-- 2. IMDB Sentiment Analysis -->
+      <a class="proj-card" href="https://imdb-sentiment-vaskas.streamlit.app/" target="_blank" style="--card-color:#f1c40f">
+        <div class="proj-top-bar"></div>
+        <div class="proj-head">
+          <div class="proj-icon">&#127916;</div>
+          <div class="tag-cluster"><span class="ptag ptag-live">Live</span><span class="ptag ptag-ml">NLP</span></div>
+        </div>
+        <div class="proj-title">IMDB Sentiment Analysis</div>
+        <div class="proj-desc">NLP model classifying IMDB movie reviews as positive or negative. Deep learning text pipeline with TF-IDF and neural network classifier, deployed on Streamlit.</div>
+        <div class="proj-chips">
+          <span class="chip">Sentiment classification</span><span class="chip">NLP pipeline</span><span class="chip">Live demo</span>
+        </div>
+        <div class="proj-foot">
+          <div class="stack-row"><span class="stag">Python</span><span class="stag">NLP</span><span class="stag">TensorFlow</span><span class="stag">Streamlit</span></div>
+          <span class="proj-date" style="color:#f1c40f">2025</span>
+        </div>
+      </a>
+
+      <!-- 3. Calories Burned -->
+      <a class="proj-card" href="https://calories-burned-vaskas.streamlit.app/" target="_blank" style="--card-color:#e74c3c">
+        <div class="proj-top-bar"></div>
+        <div class="proj-head">
+          <div class="proj-icon">&#127939;</div>
+          <div class="tag-cluster"><span class="ptag ptag-live">Live</span><span class="ptag ptag-ml">ML</span></div>
+        </div>
+        <div class="proj-title">Calories Burned Predictor</div>
+        <div class="proj-desc">ML regression model predicting calories burned during exercise based on user inputs &mdash; age, weight, duration, heart rate, and activity type. Real-time predictions via Streamlit.</div>
+        <div class="proj-chips">
+          <span class="chip">Regression model</span><span class="chip">Health &amp; fitness</span><span class="chip">Live demo</span>
+        </div>
+        <div class="proj-foot">
+          <div class="stack-row"><span class="stag">Python</span><span class="stag">Scikit-learn</span><span class="stag">Streamlit</span></div>
+          <span class="proj-date" style="color:#e74c3c">2025</span>
+        </div>
+      </a>
+
+      <!-- 4. Multiple Disease Prediction -->
+      <a class="proj-card" href="https://mdpproject-vasanth.streamlit.app/" target="_blank" style="--card-color:#05d490">
+        <div class="proj-top-bar"></div>
+        <div class="proj-head">
+          <div class="proj-icon">&#129658;</div>
+          <div class="tag-cluster"><span class="ptag ptag-live">Live</span><span class="ptag ptag-ml">ML</span></div>
+        </div>
+        <div class="proj-title">Multiple Disease Prediction</div>
+        <div class="proj-desc">AI clinical support predicting diabetes, heart disease, and Parkinson's. Ensemble of Random Forest, SVM &amp; Logistic Regression with Streamlit UI.</div>
+        <div class="proj-chips">
+          <span class="chip">91% accuracy</span><span class="chip">F1: 0.89</span>
+          <span class="chip">3 diseases</span><span class="chip">Streamlit deployed</span>
+        </div>
+        <div class="proj-foot">
+          <div class="stack-row"><span class="stag">Python</span><span class="stag">Scikit-learn</span><span class="stag">Streamlit</span></div>
+          <span class="proj-date" style="color:#05d490">05/2025</span>
+        </div>
+      </a>
+
+      <!-- 5. House Price Prediction -->
+      <a class="proj-card" href="https://hppproject-vasanth.streamlit.app/" target="_blank" style="--card-color:#4f90f0">
+        <div class="proj-top-bar"></div>
+        <div class="proj-head">
+          <div class="proj-icon">&#127968;</div>
+          <div class="tag-cluster"><span class="ptag ptag-live">Live</span><span class="ptag ptag-ml">ML</span></div>
+        </div>
+        <div class="proj-title">House Price Prediction</div>
+        <div class="proj-desc">Real estate price prediction with location analysis and amenity scoring. 86% accuracy &mdash; 20% improvement over baseline. Live Streamlit app.</div>
+        <div class="proj-chips">
+          <span class="chip">86% accuracy</span><span class="chip">+20% vs baseline</span><span class="chip">Location scoring</span>
+        </div>
+        <div class="proj-foot">
+          <div class="stack-row"><span class="stag">Python</span><span class="stag">Pandas</span><span class="stag">Streamlit</span></div>
+          <span class="proj-date" style="color:#4f90f0">2025</span>
+        </div>
+      </a>
+
+      <!-- 6. AI Research Assistant -->
+      <a class="proj-card" href="https://github.com/vasanthkasula" target="_blank" style="--card-color:#9d7df5">
+        <div class="proj-top-bar"></div>
+        <div class="proj-head">
+          <div class="proj-icon">&#128270;</div>
+          <div class="tag-cluster"><span class="ptag ptag-gen">GenAI</span><span class="ptag ptag-rag">RAG</span></div>
+        </div>
+        <div class="proj-title">AI Research Assistant (CrewAI)</div>
+        <div class="proj-desc">Multi-agent research automation using CrewAI &mdash; literature search, synthesis, and report generation. RAG with vector databases for contextual retrieval.</div>
+        <div class="proj-chips">
+          <span class="chip">+40% RAG accuracy</span><span class="chip">90% task automation</span><span class="chip">&minus;60% research time</span>
+        </div>
+        <div class="proj-foot">
+          <div class="stack-row"><span class="stag">CrewAI</span><span class="stag">LangChain</span><span class="stag">Gemini</span></div>
+          <span class="proj-date" style="color:#9d7df5">07/2025</span>
+        </div>
+      </a>
+
+      <!-- 7. AI Manga Generator -->
+      <a class="proj-card" href="https://github.com/vasanthkasula" target="_blank" style="--card-color:#f07a3a">
+        <div class="proj-top-bar"></div>
+        <div class="proj-head">
+          <div class="proj-icon">&#127988;</div>
+          <div class="tag-cluster"><span class="ptag ptag-gen">GenAI</span><span class="ptag ptag-web">Prod</span></div>
+        </div>
+        <div class="proj-title">AI Manga Generator (Gemini)</div>
+        <div class="proj-desc">Full-stack AI manga creation with Stable Diffusion + NLP. Auto-dialogue, smart layout engine, GPU-optimized inference at production scale.</div>
+        <div class="proj-chips">
+          <span class="chip">1000+ pages/min</span><span class="chip">500+ concurrent users</span><span class="chip">&lt;10s/page</span>
+        </div>
+        <div class="proj-foot">
+          <div class="stack-row"><span class="stag">Stable Diffusion</span><span class="stag">Gemini</span><span class="stag">GPU</span></div>
+          <span class="proj-date" style="color:#f07a3a">01/2026</span>
+        </div>
+      </a>
+
+      <!-- 8. Song Popularity Prediction -->
+      <a class="proj-card" href="https://github.com/vasanthkasula/song-pred-ml-project" target="_blank" style="--card-color:#f06060">
+        <div class="proj-top-bar"></div>
+        <div class="proj-head">
+          <div class="proj-icon">&#127925;</div>
+          <div class="tag-cluster"><span class="ptag ptag-ml">ML</span></div>
+        </div>
+        <div class="proj-title">Song Popularity Prediction</div>
+        <div class="proj-desc">ML model predicting song popularity using audio features &mdash; tempo, energy, danceability, valence. EDA-driven feature selection with ensemble modeling.</div>
+        <div class="proj-chips">
+          <span class="chip">Audio features</span><span class="chip">Ensemble model</span><span class="chip">EDA-driven</span>
+        </div>
+        <div class="proj-foot">
+          <div class="stack-row"><span class="stag">Python</span><span class="stag">Scikit-learn</span><span class="stag">Pandas</span></div>
+          <span class="proj-date" style="color:#f06060">2025</span>
+        </div>
+      </a>
+
+      <!-- 9. Sreeven Projects Website -->
+      <a class="proj-card" href="https://sreevenprojects.com" target="_blank" style="--card-color:#4f90f0">
+        <div class="proj-top-bar"></div>
+        <div class="proj-head">
+          <div class="proj-icon">&#127760;</div>
+          <div class="tag-cluster"><span class="ptag ptag-live">Live</span><span class="ptag ptag-web">Web</span></div>
+        </div>
+        <div class="proj-title">Sreeven Projects Website</div>
+        <div class="proj-desc">End-to-end full-stack production website for client. Complete lifecycle &mdash; requirements, design, build, deploy.</div>
+        <div class="proj-chips">
+          <span class="chip">Production deployed</span><span class="chip">Full-stack</span>
+        </div>
+        <div class="proj-foot">
+          <div class="stack-row"><span class="stag">HTML/CSS/JS</span><span class="stag">Full-stack</span></div>
+          <span class="proj-date" style="color:#4f90f0">Jun&ndash;Jul 2025</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════ GITHUB REPOS (live) ═══════════════════ -->
+  <div data-panel="repos">
+    <div class="repos-head">
+      <div class="ph" style="margin-bottom:0;flex:1">All GitHub Repositories</div>
+      <a class="lbtn" href="https://github.com/vasanthkasula" target="_blank">&#128025; View profile</a>
+    </div>
+    <div class="filter-row" id="filter-row">
+      <button class="filt-btn active" data-lang="all">All</button>
+      <button class="filt-btn" data-lang="Python">Python</button>
+      <button class="filt-btn" data-lang="HTML">HTML</button>
+      <button class="filt-btn" data-lang="Jupyter Notebook">Jupyter</button>
+      <button class="filt-btn" data-lang="starred">&#11088; Starred</button>
+      <button class="filt-btn" data-lang="forked">&#127860; Forks</button>
+    </div>
+    <div id="repos-container">
+      <div class="repos-loader">
+        <div class="spinner"></div>
+        Fetching your repositories from GitHub&hellip;
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ SKILLS ═══════════════════ -->
+  <div data-panel="skills">
+    <div class="ph">Technical Skills</div>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <div class="skill-title">Data Science</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Statistical Analysis</span><span class="skill-tag">Hypothesis Testing</span>
+          <span class="skill-tag">Feature Engineering</span><span class="skill-tag">EDA</span><span class="skill-tag">A/B Testing</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-title">Machine Learning</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Random Forest</span><span class="skill-tag">SVM</span>
+          <span class="skill-tag">XGBoost</span><span class="skill-tag">Logistic Regression</span><span class="skill-tag">Scikit-learn</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-title">Deep Learning &amp; NLP</div>
+        <div class="skill-tags">
+          <span class="skill-tag">PyTorch</span><span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">NLP Pipelines</span><span class="skill-tag">LLMs</span>
+          <span class="skill-tag">CNNs / RNNs</span><span class="skill-tag">OpenCV</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-title">GenAI &amp; RAG</div>
+        <div class="skill-tags">
+          <span class="skill-tag">LangChain</span><span class="skill-tag">CrewAI</span>
+          <span class="skill-tag">RAG</span><span class="skill-tag">Hugging Face</span>
+          <span class="skill-tag">OpenAI API</span><span class="skill-tag">Gemini API</span>
+          <span class="skill-tag">Prompt Engineering</span><span class="skill-tag">Stable Diffusion</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-title">Data Engineering</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Pandas</span><span class="skill-tag">NumPy</span>
+          <span class="skill-tag">SQL</span><span class="skill-tag">MySQL</span>
+          <span class="skill-tag">PostgreSQL</span><span class="skill-tag">MongoDB</span><span class="skill-tag">Data Pipelines</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-title">Deployment &amp; Cloud</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Streamlit</span><span class="skill-tag">Flask</span>
+          <span class="skill-tag">Docker</span><span class="skill-tag">AWS SageMaker</span>
+          <span class="skill-tag">EC2 / S3</span><span class="skill-tag">Azure</span>
+          <span class="skill-tag">CI/CD</span><span class="skill-tag">MLOps</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-title">Visualization</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Matplotlib</span><span class="skill-tag">Seaborn</span>
+          <span class="skill-tag">Power BI</span><span class="skill-tag">Jupyter</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-title">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span><span class="skill-tag">SQL</span>
+          <span class="skill-tag">JavaScript</span><span class="skill-tag">HTML / CSS</span><span class="skill-tag">C</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ EXPERIENCE ═══════════════════ -->
+  <div data-panel="exp">
+    <div class="ph">Experience &amp; Education</div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot">&#129504;</div>
+        <div class="tl-body">
+          <div class="tl-role">Data Science Intern</div>
+          <div class="tl-co">Elavence Skills</div>
+          <div class="tl-when">Feb 2026 &ndash; Present</div>
+          <div class="tl-pts">
+            <div class="tl-pt">End-to-end data science on real-world datasets</div>
+            <div class="tl-pt">Building ML models for classification, regression, and NLP using Python &amp; TensorFlow</div>
+            <div class="tl-pt">Contributing to data pipelines, model deployment, and performance analysis</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">&#128187;</div>
+        <div class="tl-body">
+          <div class="tl-role">Freelance Web Developer</div>
+          <div class="tl-co">Sreeven Projects &middot; <a href="https://sreevenprojects.com" target="_blank" style="color:var(--a);text-decoration:none">sreevenprojects.com</a></div>
+          <div class="tl-when">Jun 2025 &ndash; Jul 2025</div>
+          <div class="tl-pts">
+            <div class="tl-pt">Designed, built and deployed full-stack production website end-to-end</div>
+            <div class="tl-pt">Full lifecycle from client requirements to production deployment</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">&#128202;</div>
+        <div class="tl-body">
+          <div class="tl-role">Data Analyst Intern</div>
+          <div class="tl-co">iGate Constructions</div>
+          <div class="tl-when">Jun 2024 &ndash; Jun 2025</div>
+          <div class="tl-pts">
+            <div class="tl-pt">Reduced project costs 10% via data-driven material usage trend analysis</div>
+            <div class="tl-pt">Statistical analysis &amp; predictive models on construction datasets</div>
+            <div class="tl-pt">Power BI and Matplotlib/Seaborn dashboards for stakeholders</div>
+            <div class="tl-pt">Automated reporting pipelines with Python (Pandas, Matplotlib)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">&#127891;</div>
+        <div class="tl-body">
+          <div class="tl-role">B.Tech &mdash; Computer Science &amp; Engineering</div>
+          <div class="tl-co">Bharat Institute of Engineering and Technology (JNTU Hyderabad)</div>
+          <div class="tl-when">2020 &ndash; 2024 &middot; CGPA: 6.5/10</div>
+          <div class="tl-pts">
+            <div class="tl-pt">Data Structures, Algorithms, ML, Statistics, Database Systems</div>
+            <div class="tl-pt">Won Rank 1 at the BIET AI Hackathon</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════ CERTIFICATIONS ═══════════════════ -->
+  <div data-panel="certs">
+    <div class="ph">Certifications</div>
+    <div class="cert-list">
+      <div class="cert-card">
+        <div class="cert-ico">&#127941;</div>
+        <div>
+          <div class="cert-name">IBM Data Science Professional Certificate (2025)</div>
+          <div class="cert-sub">Data Analysis for ML &middot; Supervised &amp; Unsupervised Learning &middot; Deep Learning &middot; Reinforcement Learning &middot; Python for Data Science</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-ico">&#128013;</div>
+        <div>
+          <div class="cert-name">Microsoft Certificate &mdash; Python (Advanced)</div>
+          <div class="cert-sub">Industry-recognized proficiency in advanced Python programming and data science workflows</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-ico">&#129302;</div>
+        <div>
+          <div class="cert-name">Generative AI Certificate &mdash; Elavence Skills (2026)</div>
+          <div class="cert-sub">LLMs &middot; Prompt Engineering &middot; RAG &middot; GenAI application development &middot; Multi-agent systems</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ ACHIEVEMENTS ═══════════════════ -->
+  <div data-panel="ach">
+    <div class="ph">Achievements &amp; Metrics</div>
+    <div class="ach-list">
+      <div class="ach-card"><div class="ach-num">#1</div><div class="ach-text"><strong>Rank 1 &mdash; BIET AI Hackathon</strong><br>Led winning team at the Bharat Institute of Engineering and Technology hackathon.</div></div>
+      <div class="ach-card"><div class="ach-num">91%</div><div class="ach-text"><strong>Accuracy &mdash; Multiple Disease Prediction</strong><br>Top performance on Kaggle healthcare dataset. F1 score 0.89 across diabetes, heart disease, and Parkinson's.</div></div>
+      <div class="ach-card"><div class="ach-num">86%</div><div class="ach-text"><strong>Accuracy &mdash; House Price Prediction</strong><br>20% improvement over baseline with location analysis and amenity scoring.</div></div>
+      <div class="ach-card"><div class="ach-num">+40%</div><div class="ach-text"><strong>RAG Accuracy &mdash; CrewAI Research Assistant</strong><br>Vector DB RAG improved AI response accuracy 40% over baseline.</div></div>
+      <div class="ach-card"><div class="ach-num">500+</div><div class="ach-text"><strong>Concurrent Users &mdash; AI Manga Generator</strong><br>Production-scale GPU-optimized inference under 10 seconds per page.</div></div>
+      <div class="ach-card"><div class="ach-num">90%</div><div class="ach-text"><strong>Task Automation &mdash; AI Research Assistant</strong><br>Multi-agent framework: 90% automation, 60% reduction in research time.</div></div>
+      <div class="ach-card"><div class="ach-num">&minus;10%</div><div class="ach-text"><strong>Cost Reduction &mdash; iGate Constructions</strong><br>Reduced project costs 10% through data-driven analysis and predictive demand forecasting.</div></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ CONTACT ═══════════════════ -->
+  <div data-panel="contact">
+    <div class="ph">Get in Touch</div>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:kasulavasanth55@gmail.com"><div class="contact-ico">&#9993;</div><div><div class="contact-lbl">Email</div><div class="contact-val">kasulavasanth55@gmail.com</div></div></a>
+      <a class="contact-card" href="tel:+917993712715"><div class="contact-ico">&#128241;</div><div><div class="contact-lbl">Phone</div><div class="contact-val">+91 7993712715</div></div></a>
+      <a class="contact-card" href="https://linkedin.com/in/vasanth-kasula-314428285" target="_blank"><div class="contact-ico">&#128188;</div><div><div class="contact-lbl">LinkedIn</div><div class="contact-val">vasanth-kasula</div></div></a>
+      <a class="contact-card" href="https://github.com/vasanthkasula" target="_blank"><div class="contact-ico">&#128025;</div><div><div class="contact-lbl">GitHub</div><div class="contact-val">vasanthkasula</div></div></a>
+      <a class="contact-card" href="https://kaggle.com/vasanthkasula" target="_blank"><div class="contact-ico">&#128202;</div><div><div class="contact-lbl">Kaggle</div><div class="contact-val">vasanthkasula</div></div></a>
+      <a class="contact-card" href="https://leetcode.com/u/vasanth_kasula" target="_blank"><div class="contact-ico">&#128187;</div><div><div class="contact-lbl">LeetCode</div><div class="contact-val">vasanth_kasula</div></div></a>
+      <a class="contact-card" href="https://vasanthkasula.github.io/vasanth-portfolio" target="_blank"><div class="contact-ico">&#127760;</div><div><div class="contact-lbl">Portfolio</div><div class="contact-val">vasanthkasula.github.io</div></div></a>
+      <a class="contact-card" href="https://mdpproject-vasanth.streamlit.app/" target="_blank"><div class="contact-ico">&#128640;</div><div><div class="contact-lbl">Live App</div><div class="contact-val">MDP Streamlit App</div></div></a>
+    </div>
+    <div class="open-box">
+      <strong>Open to opportunities</strong><br>
+      Actively seeking <strong>Data Scientist &middot; ML Engineer &middot; AI Engineer &middot; Data Analyst &middot; Python Developer</strong>
+      roles &mdash; Hyderabad and remote. Available immediately!
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+/* ════════════════════════════════════════════
+   TAB SYSTEM
+   Uses data-panel attribute, not class names
+════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  var panels = document.querySelectorAll('[data-panel]');
+  var navBtns = document.querySelectorAll('.nav-btn');
+
+  function showPanel(target) {
+    // hide all panels
+    panels.forEach(function (p) {
+      p.classList.remove('show');
+    });
+    // deactivate all nav buttons
+    navBtns.forEach(function (b) {
+      b.classList.remove('active');
+    });
+    // show target panel
+    var panel = document.querySelector('[data-panel="' + target + '"]');
+    if (panel) panel.classList.add('show');
+    // activate matching nav button
+    var btn = document.querySelector('.nav-btn[data-target="' + target + '"]');
+    if (btn) btn.classList.add('active');
+    // trigger repo load when repos tab opened
+    if (target === 'repos') loadRepos();
+  }
+
+  // attach click handlers
+  navBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = btn.getAttribute('data-target');
+      if (target) showPanel(target);
+    });
+  });
+
+  // keyboard navigation
+  var TAB_ORDER = ['about','projects','repos','skills','exp','certs','ach','contact'];
+  document.addEventListener('keydown', function (e) {
+    var active = document.querySelector('.nav-btn.active');
+    if (!active) return;
+    var cur = TAB_ORDER.indexOf(active.getAttribute('data-target'));
+    if (e.key === 'ArrowRight' && cur < TAB_ORDER.length - 1) showPanel(TAB_ORDER[cur + 1]);
+    if (e.key === 'ArrowLeft'  && cur > 0)                    showPanel(TAB_ORDER[cur - 1]);
+  });
+
+  /* ═══════════════════════════════════════
+     GITHUB API
+  ═══════════════════════════════════════ */
+  var GH_USER = 'vasanthkasula';
+  var allRepos = [];
+  var reposReady = false;
+  var reposFetching = false;
+
+  var LANG_COLORS = {
+    'Python':'#3572A5','JavaScript':'#f1e05a','TypeScript':'#2b7489',
+    'HTML':'#e34c26','CSS':'#563d7c','Jupyter Notebook':'#DA5B0B',
+    'Shell':'#89e051','Go':'#00ADD8','Rust':'#dea584',
+    'C++':'#f34b7d','C':'#555555','Java':'#b07219','R':'#198CE7'
+  };
+
+  // Load GitHub profile on page load
+  fetch('https://api.github.com/users/' + GH_USER)
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      if (d.public_repos != null) document.getElementById('kpi-repos').textContent = d.public_repos;
+      var bar = document.getElementById('stat-bar');
+      var now = new Date().toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'});
+      bar.innerHTML =
+        '<div class="stat-item">&#128025; <b>' + (d.public_repos || 0) + '</b>&nbsp;public repos</div>' +
+        '<div class="stat-item">&#128101; <b>' + (d.followers || 0) + '</b>&nbsp;followers</div>' +
+        '<div class="stat-item">&#128100; <b>' + (d.following || 0) + '</b>&nbsp;following</div>' +
+        (d.location ? '<div class="stat-item">&#128205; <b>' + d.location + '</b></div>' : '') +
+        '<div class="stat-item" style="margin-left:auto;font-size:9.5px;color:var(--t3)">Live via GitHub API &middot; ' + now + '</div>';
+    })
+    .catch(function () {});
+
+  // Prefetch repos in background
+  function fetchReposData() {
+    if (reposFetching || reposReady) return;
+    reposFetching = true;
+    fetch('https://api.github.com/users/' + GH_USER + '/repos?sort=updated&per_page=100&type=public')
+      .then(function (r) {
+        if (!r.ok) throw new Error('API ' + r.status);
+        return r.json();
+      })
+      .then(function (data) {
+        allRepos = data.sort(function (a, b) {
+          return (b.stargazers_count - a.stargazers_count) ||
+                 (new Date(b.updated_at) - new Date(a.updated_at));
+        });
+        reposReady = true;
+        reposFetching = false;
+        // render if repos tab is active
+        var repoPanel = document.querySelector('[data-panel="repos"]');
+        if (repoPanel && repoPanel.classList.contains('show')) renderRepos(allRepos);
+      })
+      .catch(function () {
+        reposFetching = false;
+        document.getElementById('repos-container').innerHTML =
+          '<div class="repos-loader">&#128268;<br><br>Could not load repos.<br>' +
+          '<a href="https://github.com/' + GH_USER + '" target="_blank" style="color:var(--a)">View on GitHub &rarr;</a></div>';
+      });
+  }
+
+  // Called when repos tab is opened
+  function loadRepos() {
+    if (reposReady) {
+      renderRepos(allRepos);
+    } else {
+      fetchReposData();
+    }
+  }
+
+  // Filter buttons
+  document.getElementById('filter-row').addEventListener('click', function (e) {
+    var btn = e.target.closest('.filt-btn');
+    if (!btn) return;
+    document.querySelectorAll('.filt-btn').forEach(function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    if (!reposReady) return;
+    var lang = btn.getAttribute('data-lang');
+    var filtered = lang === 'all'     ? allRepos :
+                   lang === 'starred' ? allRepos.filter(function (r) { return r.stargazers_count > 0; }) :
+                   lang === 'forked'  ? allRepos.filter(function (r) { return r.fork; }) :
+                                        allRepos.filter(function (r) { return r.language === lang; });
+    renderRepos(filtered);
+  });
+
+  function renderRepos(repos) {
+    var el = document.getElementById('repos-container');
+    if (!repos || !repos.length) {
+      el.innerHTML = '<div class="repos-loader">No repositories match this filter.</div>';
+      return;
+    }
+    var totalStars = repos.reduce(function (s, r) { return s + r.stargazers_count; }, 0);
+    var html = '<div style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--t3);margin-bottom:12px;">' +
+      repos.length + ' repos &middot; ' + totalStars + ' total stars &middot; sorted by stars &amp; activity</div>';
+
+    repos.forEach(function (repo) {
+      var lang = repo.language || '';
+      var lc   = LANG_COLORS[lang] || '#9FE1CB';
+      var desc = repo.description
+        ? (repo.description.length > 85 ? repo.description.slice(0, 85) + '...' : repo.description)
+        : 'No description';
+      var upd  = new Date(repo.updated_at).toLocaleDateString('en-GB', { month:'short', year:'numeric' });
+      var icon = repo.fork ? '&#127860;' : lang === 'Jupyter Notebook' ? '&#128211;' :
+                 lang === 'Python' ? '&#128013;' : lang === 'HTML' ? '&#127760;' : '&#128193;';
+
+      html +=
+        '<a class="repo-row" href="' + repo.html_url + '" target="_blank" rel="noopener">' +
+          '<div class="repo-icon">' + icon + '</div>' +
+          '<div class="repo-info">' +
+            '<div class="repo-name">' + repo.name +
+              (repo.fork ? ' <span style="font-size:9px;color:var(--t3);font-weight:400">fork</span>' : '') +
+            '</div>' +
+            '<div class="repo-desc">' + desc + '</div>' +
+          '</div>' +
+          '<div class="repo-meta">' +
+            (lang ? '<span class="lang-badge"><span class="lang-dot" style="background:' + lc + '"></span>' + lang + '</span>' : '') +
+            (repo.stargazers_count ? '<span>&#11088; ' + repo.stargazers_count + '</span>' : '') +
+            (repo.forks_count      ? '<span>&#127860; ' + repo.forks_count + '</span>' : '') +
+            '<span>' + upd + '</span>' +
+          '</div>' +
+        '</a>';
+    });
+
+    html += '<div style="text-align:center;padding:18px 0 0;font-family:\'DM Mono\',monospace;font-size:10px;color:var(--t3)">' +
+      '<a href="https://github.com/' + GH_USER + '" target="_blank" style="color:var(--a);text-decoration:none">View full GitHub profile &rarr;</a></div>';
+
+    el.innerHTML = html;
+  }
+
+  // Prefetch repos immediately in background
+  fetchReposData();
+
+})();
+</script>
+</body>
+</html>
